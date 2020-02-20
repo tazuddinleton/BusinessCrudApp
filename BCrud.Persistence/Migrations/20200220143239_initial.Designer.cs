@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BCrud.Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200219180235_init")]
-    partial class init
+    [Migration("20200220143239_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace BCrud.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ActiveDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DevelopmentOfficer")
                         .IsRequired()

@@ -34,9 +34,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\syllabus\syllabus.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BCrud.Core\BCrud.Core.csproj" />
     <ProjectReference Include="..\BCrud.Domain\BCrud.Domain.csproj" />
     <ProjectReference Include="..\BCrud.Persistence\BCrud.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\syllabus\syllabus.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

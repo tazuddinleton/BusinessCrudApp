@@ -43,6 +43,38 @@ namespace WebUI
                   END
 
                 ");
+
+
+
+                context.Database.ExecuteSqlCommand(@"
+    
+                INSERT INTO [dbo].[Syllabi]
+                           ([Id]
+                           ,[Name]
+                           ,[TradeId]
+                           ,[TradeLevelId]
+                           ,[Languages]
+                           ,[SyllabusUrl]
+                           ,[TestPlanUrl]
+                           ,[DevelopmentOfficer]
+                           ,[Manager]
+                           ,[ActiveDate])
+  
+                SELECT NEWID()
+	                , 'Name' + CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX))
+	                , T.Id AS TradeID
+	                , TV.id AS TradeLevelID
+	                , 'EN'
+	                , 'SampleSyllabusUrl'+ CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) +'.pdf' 
+	                , 'SampleTestPlanUrl'+ CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) +'.docx'
+	                , 'Development Officer Name' + CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) 
+	                , 'Manager name' + CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX))
+	                , GETDATE()	
+                FROM Trades T
+                INNER JOIN TradeLevels TV ON T.Id = TV.TradeId
+
+
+");
             }
         }
     }

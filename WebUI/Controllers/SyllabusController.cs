@@ -28,5 +28,16 @@ namespace WebUI.Controllers
         {
             return _syllabusRepository.AddSyllabus(dto.BindId(x => x.Id));            
         }
+
+        [HttpGet("{id:guid}")]
+        public ActionResult<SyllabusDto> Get([FromRoute] Guid id)
+        {
+            return Ok(_syllabusRepository.FindById(id));
+        }
+
+        public ActionResult<SyllabusDto> Get()
+        {
+            return Ok(_syllabusRepository.GetAll());
+        }
     }
 }

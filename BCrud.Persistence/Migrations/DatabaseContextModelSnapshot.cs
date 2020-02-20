@@ -26,7 +26,7 @@ namespace BCrud.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ActiveDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("DevelopmentOfficer")
                         .IsRequired()

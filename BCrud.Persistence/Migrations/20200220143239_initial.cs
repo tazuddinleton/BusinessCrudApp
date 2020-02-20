@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BCrud.Persistence.Migrations
 {
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,7 +51,7 @@ namespace BCrud.Persistence.Migrations
                     TestPlanUrl = table.Column<string>(nullable: true),
                     DevelopmentOfficer = table.Column<string>(nullable: false),
                     Manager = table.Column<string>(nullable: false),
-                    ActiveDate = table.Column<DateTime>(nullable: false)
+                    ActiveDate = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {

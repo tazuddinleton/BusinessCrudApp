@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCrud.Core.Repositories
 {
@@ -62,27 +63,53 @@ namespace BCrud.Core.Repositories
             _context.SaveChanges();
         }
 
-        public Syllabus FindById(Guid id)
+        public SyllabusDto FindById(Guid id)
         {
-            return _context.Syllabi.SingleOrDefault(x => x.Id == id);
+
+
+            var syllabus =
+            (from s in _context.Syllabi.Where(x=> x.Id == id)
+             join t in _context.Trades on s.TradeId equals t.Id
+             join tv in _context.TradeLevels on s.TradeLevelId equals tv.Id
+
+             select new SyllabusDto(s.Id,
+                s.Name,
+                s.TradeId,
+                t.Title,
+                s.TradeLevelId,
+                tv.Title,
+                s.Languages,
+                s.SyllabusUrl,
+                s.TestPlanUrl,
+                s.DevelopmentOfficer,
+                s.Manager,
+                s.ActiveDate
+                )).SingleOrDefault();
+
+            return syllabus;
         }
 
         public IEnumerable<SyllabusDto> GetAll()
         {
-            return _context.Syllabi
-                .Select(x=> 
-                    new SyllabusDto(x.Id,
-                x.Name,
-                x.TradeId,
-                x.TradeLevelId,
-                x.Languages,
-                x.SyllabusUrl,
-                x.TestPlanUrl,
-                x.DevelopmentOfficer,
-                x.Manager,
-                x.ActiveDate
-                ))
-                .ToList();
+            return
+            (from s in _context.Syllabi
+             join t in _context.Trades on s.TradeId equals t.Id
+             join tv in _context.TradeLevels on s.TradeLevelId equals tv.Id
+
+             select new SyllabusDto(s.Id,
+                s.Name,
+                s.TradeId,
+                t.Title,
+                s.TradeLevelId,
+                tv.Title,
+                s.Languages,
+                s.SyllabusUrl,
+                s.TestPlanUrl,
+                s.DevelopmentOfficer,
+                s.Manager,
+                s.ActiveDate
+                )).ToList();
+
         }
     }
 }

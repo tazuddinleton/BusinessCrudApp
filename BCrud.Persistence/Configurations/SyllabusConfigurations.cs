@@ -26,6 +26,7 @@ namespace BCrud.Persistence.Configurations
             builder.Property(c => c.Manager).HasField("_manager")
                 .IsRequired();
             builder.Property(c => c.ActiveDate).HasField("_activeDate")
+                .HasColumnType("datetime")
                 .IsRequired();
 
             builder.HasOne(c => c.Trade)

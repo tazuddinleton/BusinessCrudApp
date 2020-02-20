@@ -41,7 +41,7 @@ namespace WebUI
             
             services.AddControllersWithViews().AddNewtonsoftJson(configure => {                
 
-                configure.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                configure.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 configure.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
                 configure.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
                 configure.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
