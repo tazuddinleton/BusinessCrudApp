@@ -1,75 +1,74 @@
+<div class="container-fluid">
 
+  <h1 id="tableLabel">Syllabus List</h1>
 
-{{
-  
-searchForm.value | json
-}}
-<h1 id="tableLabel">Syllabus List</h1>
+  <p>This component demonstrates fetching data from the server.</p>
 
-<p>This component demonstrates fetching data from the server.</p>
+  <p *ngIf="!syllabi"><em>Loading...</em></p>
 
-<p *ngIf="!syllabi"><em>Loading...</em></p>
-
-<form [formGroup]="searchForm" novalidate class="form-horizontal" style="margin-bottom:50px;">
-  <div class="row">
-    <div class="col-md-5">
-      <div class="form-group">
-        <label for="tradeId" class="col-xs-3 control-label">Trade</label>
-        <select formControlName="tradeId" id="tradeId" name="tradeId" class="form-control">
-          <option value="">All</option>
-          <option *ngFor="let trade of trades" [value]="trade.id">{{trade.title}}</option>
-        </select>
+  <form [formGroup]="searchForm" novalidate class="form-horizontal" style="margin-bottom:50px;">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="tradeId" class="col-xs-3 control-label">Trade</label>
+          <select formControlName="tradeId" id="tradeId" name="tradeId" class="form-control">
+            <option value="">All</option>
+            <option *ngFor="let trade of trades" [value]="trade.id">{{trade.title}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="tradeId" class="control-label">Level</label>
+          <select formControlName="levelId" id="levelId" name="levelId" class="form-control">
+            <option value="">All</option>
+            <option *ngFor="let level of levels" [value]="level.id">{{level.title}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <label class="control-label"></label>
+        <button type="submit" class="btn btn-success" style="margin-top: 30px;" (click)="searchResult()">Search <i class="fa fa-search"></i></button>
       </div>
     </div>
-    <div class="col-md-5">
-      <div class="form-group">
-        <label for="tradeId" class="control-label">Level</label>
-        <select formControlName="levelId" id="levelId" name="levelId" class="form-control">
-          <option value="">All</option>
-          <option *ngFor="let level of levels" [value]="level.id">{{level.title}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-2">
-      <label class="control-label"></label>
-      <button type="submit" class="btn btn-success" style="margin-top: 30px;" (click)="searchResult()">Search <i class="fa fa-search"></i></button>
-    </div>
-  </div>
-</form>
+  </form>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="syllabi">
-  <thead>
-    <tr>
-      <th>Action</th>
-      <th>Syllabus</th>
-      <th>Trade</th>
-      <th>Level</th>
-      <th>Uploaded Syllabus</th>
-      <th>Uploaded Test Plan</th>
-      <th>Languages</th>
-      <th>Active Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let s of syllabi">
-      <td>
-        <button (click)="editSyllabus(syllabus)" style="margin-left: 10px;" class="btn btn-info"> Edit</button>
-        <button (click)="deleteSyllabus(syllabus)" style="margin-left: 10px;" class="btn btn-danger"> Delete</button>
-      </td>
-      <td>{{ s.name }}</td>
-      <td>{{ s.tradeName }}</td>
-      <td>{{ s.tradeLevelName }}</td>
-      <td>
-        {{baseUrl}}
-        <a href="">{{ s.syllabusUrl }}</a>
-      </td>
-      <td>
-        <a href="{{s.testPlanUrl}}">
-          {{ s.testPlanUrl }}
-        </a>
-      </td>
-      <td>{{ s.languages }}</td>
-      <td>{{ s.activeDate| date:'dd-MM-yyyy' }}</td>
-    </tr>
-  </tbody>
-</table>
+  <table class='table table-border table-striped' aria-labelledby="tableLabel" *ngIf="syllabi">
+    <thead>
+      <tr>
+        <th>Action</th>
+        <th>Syllabus</th>
+        <th>Trade</th>
+        <th>Level</th>
+        <th>Uploaded Syllabus</th>
+        <th>Uploaded Test Plan</th>
+        <th>Languages</th>
+        <th>Active Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of syllabi">
+        <td>
+
+          <a style="font-size:15px;color:dodgerblue;"> <i class="fa fa-edit"></i></a>
+          
+        </td>
+        <td>{{ s.name }}</td>
+        <td>{{ s.tradeName }}</td>
+        <td>{{ s.tradeLevelName }}</td>
+        <td>
+          {{baseUrl}}
+          <a href="">{{ s.syllabusUrl }}</a>
+        </td>
+        <td>
+          <a href="{{s.testPlanUrl}}">
+            {{ s.testPlanUrl }}
+          </a>
+        </td>
+        <td>{{ s.languages }}</td>
+        <td>{{ s.activeDate| date:'dd-MM-yyyy' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
