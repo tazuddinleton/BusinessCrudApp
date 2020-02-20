@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\syllabus\syllabus.component.ts" />
+    <None Remove="ClientApp\src\app\syllabus\syllabus-list.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,7 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\syllabus\syllabus.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\syllabus\syllabus-list.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

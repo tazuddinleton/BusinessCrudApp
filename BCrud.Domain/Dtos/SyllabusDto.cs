@@ -46,9 +46,9 @@ namespace BCrud.Domain.Dtos
             Id = id;
             Name = name;
             TradeId = tradeId;
-            TradeName = TradeName;
+            TradeName = tradeName;
             TradeLevelId = tradeLevelId;
-            TradeLevelName = TradeLevelName;
+            TradeLevelName = tradLevelName;
             Languages = languages;
             SyllabusUrl = syllabusUrl;
             TestPlanUrl = testPlanUrl;
