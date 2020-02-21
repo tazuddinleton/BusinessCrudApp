@@ -1,6 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Syllabus } from '../models/syllabus.model';
+import { Trade } from '../models/trade.model';
+import { TradeLevel } from '../models/tradelevel.model';
+import { SyllabusService } from '../services/syllabus.service';
+import { TradeService } from '../services/trade.services';
+import { TradeLevelService } from '../services/tradelevel.service';
 
 @Component({
     selector: 'app-syllabus-list',
@@ -8,37 +15,28 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 
 export class SyllabusListComponent implements OnInit {
+
+    levelBackup: TradeLevel[];
+
     public syllabi: Syllabus[];
     public trades: Trade[];
     public levels: TradeLevel[];
-    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string
-        , private formBuilder: FormBuilder
-    ) {
+    constructor(private formBuilder: FormBuilder, private router: Router, private syllabusService: SyllabusService
+        , private tradeService: TradeService, private tradeLevelService: TradeLevelService
+    ) {}
 
-        baseUrl = baseUrl
-        http.get<Syllabus[]>(baseUrl + 'api/syllabus').subscribe(result => {
-            this.syllabi = result;
-        }, error => console.error(error));
-
-        http.get<Trade[]>(baseUrl + 'api/trade').subscribe(result => {
-            this.trades = result;
-        }, error => console.log(error));
-
-        http.get<TradeLevel[]>(baseUrl + 'api/tradelevel').subscribe(result => {
-            this.levels = result;
-            this.levelBackup = result;
-        }, error => console.log(error));
-    }
     searchForm: FormGroup;
-    levelBackup: TradeLevel[];
+   
 
     ngOnInit() {
+
+        this.loadData();
+
         this.searchForm = this.formBuilder.group({
 
             tradeId: [''],
             levelId: [''],
-        });
-        console.log('calling on change');
+        });        
         this.onTradeChange();
         
     }
@@ -49,28 +47,24 @@ export class SyllabusListComponent implements OnInit {
             this.searchForm.get('levelId').setValue('');
         });
     }
+
+    addSyllabus() {
+        this.router.navigate(['syllabus']);
+    }
+
+    editSyllabus(id) {
+        this.router.navigate(['syllabus/'+id]);
+    }
+
+
+    private loadData() {
+        this.syllabusService.getAll().subscribe(result => this.syllabi = result);
+        this.tradeService.getTrades().subscribe(result => this.trades = result);
+        this.tradeLevelService.getTradLevels().subscribe(result => {
+            this.levels = result;
+            this.levelBackup = result;
+        });  
+    }
 }
     
 
-interface Syllabus {
-    id: string,
-    name: string,
-    tradeId: string,
-    tradeName: string,
-    tradeLevelId: string,
-    tradeLevelName: string,
-    developmentOfficer: string,
-    manager: string,
-    activeDate: Date
-}
-
-interface Trade {
-    id: string,
-    title: string
-}
-
-interface TradeLevel {
-    id: string,
-    title: string,
-    tradeId: string
-}

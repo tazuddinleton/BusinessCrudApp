@@ -6,10 +6,8 @@ using System.Text;
 namespace BCrud.Domain.Dtos
 {
     public class SyllabusDto
-    {   
-        
-        [JsonIgnore]
-        public Guid Id { get; set; }
+    {           
+        public Guid? Id { get; set; }
         public string Name { get; set; }
         public Guid TradeId { get; set; }
         public string TradeName { get; set; }

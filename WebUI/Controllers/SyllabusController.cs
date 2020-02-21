@@ -26,7 +26,14 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult<Guid> Post(SyllabusDto dto)
         {
-            return _syllabusRepository.AddSyllabus(dto.BindId(x => x.Id));            
+            return Ok(_syllabusRepository.AddSyllabus(dto.BindId(x => (Guid)x.Id)));            
+        }
+
+        [HttpPut]
+        public ActionResult<Guid> Put(SyllabusDto dto)
+        {
+            _syllabusRepository.Update(dto);
+            return Ok();
         }
 
         [HttpGet("{id:guid}")]
@@ -39,5 +46,7 @@ namespace WebUI.Controllers
         {
             return Ok(_syllabusRepository.GetAll());
         }
+
+
     }
 }

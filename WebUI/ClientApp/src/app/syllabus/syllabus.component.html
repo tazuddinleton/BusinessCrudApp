@@ -1,0 +1,142 @@
+
+
+
+<form [formGroup]="syllabusForm" novalidate class="form-horizontal" style="margin-bottom:50px;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="tradeId" class="col-xs-3 control-label">Trade</label>
+          <select formControlName="tradeId" id="tradeId" name="tradeId" class="form-control">
+            <option value="">Please select</option>
+            <option *ngFor="let trade of trades" [value]="trade.id">{{trade.title}}</option>
+          </select>
+          <small class="text-danger" *ngIf="syllabusForm.get('tradeId').errors?.required && syllabusForm.get('tradeId').touched">
+            Trade is required.
+          </small>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="tradeId" class="control-label">Level</label>
+          <select formControlName="tradeLevelId" id="levelId" name="levelId" class="form-control">
+            <option value="">Please select</option>
+            <option *ngFor="let level of levels" [value]="level.id">{{level.title}}</option>
+          </select>
+          <small class="text-danger" *ngIf="syllabusForm.get('tradeLevelId').errors?.required && syllabusForm.get('tradeLevelId').touched">
+            Trade is required.
+          </small>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="" class="control-label">Languages</label>
+          <div class="form-check">
+            <div *ngFor="let lang of languages; let i=index">
+              <label>
+                <input type="checkbox" [value]="lang.value" (change)="onCheckboxChange($event)" id="{{lang.value}}"/>
+                {{lang.name}}
+              </label>
+
+            </div>
+            <small class="text-danger" *ngIf="this.syllabusForm.controls['languages'].errors?.required">
+              At leas one language is required.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="number" formControlName="id" placeholder="Id" name="Id" class="form-control" id="Id" hidden>
+        </div>
+
+        <div class="form-group">
+          <label for="name" class="control-label">Syllabus Name</label>
+          <input formControlName="name" name="name" class="form-control" id="name">
+          <small class="text-danger" *ngIf="syllabusForm.get('name').errors?.required && syllabusForm.get('name').touched">
+            Syllabus name is required
+          </small>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <button class="btn btn-primary" (click)="browseForFile('syllabusFile')">Upload Syllabus</button>
+              <input type="file" name="syllabusFile"
+                     class="form-control" id="syllabusFile"
+                     accept=".doc,.docx,.pdf" (change)="onFileChange($event, 1)"
+                     hidden />
+            </div>
+            <div class="col-md-4">
+              <small class="badge">
+                No file chosen
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <button class="btn btn-primary" (click)="browseForFile('testPlanFile')">Upload Test Plan</button>
+              <input type="file" name="testPlanFile"
+                     class="form-control" id="testPlanFile"
+                     accept=".doc,.docx,.pdf" (change)="onFileChange($event, 1)"
+                     hidden />
+            </div>
+            <div class="col-md-4">
+              <small class="badge">
+                No file chosen
+              </small>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="developmentOfficer" class="control-label">Development Officer</label>
+          <input formControlName="developmentOfficer" name="developmentOfficer" class="form-control" id="developmentOfficer">
+          <small class="text-danger" *ngIf="syllabusForm.get('developmentOfficer').errors?.required && syllabusForm.get('developmentOfficer').touched">
+            Development officer name is required
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="manager" class="control-label">Manager</label>
+          <input formControlName="manager" name="manager" class="form-control" id="manager">
+          <small class="text-danger" *ngIf="syllabusForm.get('manager').errors?.required && syllabusForm.get('manager').touched">
+            Manager name is required
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="activeDate" class="control-label">Active Date</label>
+          <input formControlName="activeDate" name="activeDate"
+                 type="date" class="form-control" id="activeDate" value="2018-07-22">
+          <small class="text-danger" *ngIf="syllabusForm.get('activeDate').errors?.required && syllabusForm.get('activeDate').touched">
+            Date is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-success" [disabled]='syllabusForm.invalid' (click)="submit()">Save</button>
+
+          <button class="btn btn-warning" (click)="resetForm()">Clear</button>
+        </div>
+        <!-- <button class="btn btn-success" [disabled]='syllabusForm.invalid' (click)="onUpdate()">Update</button>-->
+
+
+      </div>
+    </div>
+  </div>
+
+  {{this.syllabusForm.value | json}}
+</form>
+
+

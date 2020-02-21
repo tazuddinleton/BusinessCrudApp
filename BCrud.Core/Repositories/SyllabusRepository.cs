@@ -22,7 +22,7 @@ namespace BCrud.Core.Repositories
         public Guid AddSyllabus(SyllabusDto dto)
         {
 
-            var syllabus = new Syllabus(dto.Id, 
+            var syllabus = new Syllabus(dto.Id.Value, 
                 dto.Name, 
                 dto.TradeId, 
                 dto.TradeLevelId, 
@@ -41,7 +41,7 @@ namespace BCrud.Core.Repositories
         public void Update(SyllabusDto dto)
         {
 
-            var syllabus = new Syllabus(dto.Id,
+            var syllabus = new Syllabus(dto.Id.Value,
                  dto.Name,
                  dto.TradeId,
                  dto.TradeLevelId,
