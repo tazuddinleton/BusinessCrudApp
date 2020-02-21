@@ -13,8 +13,11 @@ namespace BCrud.Domain.Dtos
         public string TradeName { get; set; }
         public Guid TradeLevelId { get; set; }
         public string TradeLevelName { get; set; }
+        
         public string Languages { get; set; }
+        public string SyllabusFilename { get; set; }
         public string SyllabusUrl { get; set; }
+        public string TestPlanFilename { get; set; }
         public string TestPlanUrl { get; set; }
         public string DevelopmentOfficer { get; set; }
         public string Manager { get; set; }
@@ -24,14 +27,22 @@ namespace BCrud.Domain.Dtos
         
         public SyllabusDto() { }
 
-        public SyllabusDto(Guid id, string name, Guid tradeId, Guid tradeLevelId, string languages, string syllabusUrl, string testPlanUrl, string developmentOfficer, string manager, DateTime activeDate)
+        public SyllabusDto(Guid id, string name, Guid tradeId, Guid tradeLevelId,
+            string languages,
+            string syllabusFilename,
+            string syllabusUrl,
+            string testPlanFilename,
+            string testPlanUrl, 
+            string developmentOfficer, string manager, DateTime activeDate)
         {
             Id = id;
             Name = name;
             TradeId = tradeId;
             TradeLevelId = tradeLevelId;
             Languages = languages;
+            SyllabusFilename = syllabusFilename;
             SyllabusUrl = syllabusUrl;
+            TestPlanFilename = testPlanFilename;
             TestPlanUrl = testPlanUrl;
             DevelopmentOfficer = developmentOfficer;
             Manager = manager;
@@ -39,7 +50,13 @@ namespace BCrud.Domain.Dtos
         }
 
         public SyllabusDto(Guid id, string name, Guid tradeId, string tradeName,
-            Guid tradeLevelId, string tradLevelName,  string languages, string syllabusUrl, string testPlanUrl, string developmentOfficer, string manager, DateTime activeDate)
+            Guid tradeLevelId, string tradLevelName,
+            string languages,
+            string syllabusFilename,
+            string syllabusUrl, 
+            string testPlanFilename,
+            string testPlanUrl, 
+            string developmentOfficer, string manager, DateTime activeDate)
         {
             Id = id;
             Name = name;
@@ -48,7 +65,9 @@ namespace BCrud.Domain.Dtos
             TradeLevelId = tradeLevelId;
             TradeLevelName = tradLevelName;
             Languages = languages;
+            SyllabusFilename = syllabusFilename;
             SyllabusUrl = syllabusUrl;
+            TestPlanFilename = testPlanFilename;
             TestPlanUrl = testPlanUrl;
             DevelopmentOfficer = developmentOfficer;
             Manager = manager;

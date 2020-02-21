@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BCrud.Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200220143239_initial")]
-    partial class initial
+    [Migration("20200221162407_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,7 +46,13 @@ namespace BCrud.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SyllabusFilename")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SyllabusUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TestPlanFilename")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TestPlanUrl")

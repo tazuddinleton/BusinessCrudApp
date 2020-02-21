@@ -44,7 +44,13 @@ namespace BCrud.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SyllabusFilename")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SyllabusUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TestPlanFilename")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TestPlanUrl")

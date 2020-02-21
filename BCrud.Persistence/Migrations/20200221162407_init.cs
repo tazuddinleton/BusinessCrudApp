@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BCrud.Persistence.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,7 +47,9 @@ namespace BCrud.Persistence.Migrations
                     TradeId = table.Column<Guid>(nullable: false),
                     TradeLevelId = table.Column<Guid>(nullable: false),
                     Languages = table.Column<string>(nullable: false),
+                    SyllabusFilename = table.Column<string>(nullable: true),
                     SyllabusUrl = table.Column<string>(nullable: true),
+                    TestPlanFilename = table.Column<string>(nullable: true),
                     TestPlanUrl = table.Column<string>(nullable: true),
                     DevelopmentOfficer = table.Column<string>(nullable: false),
                     Manager = table.Column<string>(nullable: false),

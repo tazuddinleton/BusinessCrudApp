@@ -26,8 +26,14 @@ namespace BCrud.Domain.Entities
         private string _languages;        
         public string Languages => _languages;
 
+        private string _syllabusFilename;
+        public string SyllabusFilename => _syllabusFilename;
+
         private string _syllabusUrl;        
         public string SyllabusUrl => _syllabusUrl;
+
+        private string _testPlanFilename;
+        public string TestPlanFilename => _testPlanFilename;
 
         private string _testPlanUrl;
         public string TestPlanUrl => _testPlanUrl;
@@ -52,10 +58,16 @@ namespace BCrud.Domain.Entities
 
         private Syllabus(){ }
 
-        
+
         public Syllabus(Guid id, string name, Guid tradeId, Guid levelId,
-           string languages, string syllabusUrl, string testPlanUrl,
-           string devOfficer, string manager, DateTime activeDate
+           string languages,
+           string syllabusFilename,
+           string syllabusUrl,
+           string testPlanFilename,
+           string testPlanUrl,
+           string devOfficer, 
+           string manager, 
+           DateTime activeDate
            )
         {
 
@@ -77,7 +89,9 @@ namespace BCrud.Domain.Entities
             _tradeId = tradeId;
             _tradeLevelId = levelId;
             _languages = languages;
+            _syllabusFilename = syllabusFilename;
             _syllabusUrl = syllabusUrl;
+            _testPlanFilename = testPlanFilename;
             _testPlanUrl = testPlanUrl;
             _devOfficer = devOfficer;
             _manager = manager;

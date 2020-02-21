@@ -19,7 +19,9 @@ namespace BCrud.Persistence.Configurations
             builder.Property(c => c.TradeLevelId).HasField("_tradeLevelId");
             builder.Property(c => c.Languages).HasField("_languages")
                 .IsRequired();
+            builder.Property(c => c.SyllabusFilename).HasField("_syllabusFilename");
             builder.Property(c => c.SyllabusUrl).HasField("_syllabusUrl");
+            builder.Property(c => c.TestPlanFilename).HasField("_testPlanFilename");
             builder.Property(c => c.TestPlanUrl).HasField("_testPlanUrl");
             builder.Property(c => c.DevelopmentOfficer).HasField("_devOfficer")
                 .IsRequired();

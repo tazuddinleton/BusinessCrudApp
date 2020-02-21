@@ -54,18 +54,22 @@ namespace WebUI
                            ,[TradeId]
                            ,[TradeLevelId]
                            ,[Languages]
+                           ,[SyllabusFilename]
                            ,[SyllabusUrl]
+                           ,[TestPlanFilename]
                            ,[TestPlanUrl]
                            ,[DevelopmentOfficer]
                            ,[Manager]
                            ,[ActiveDate])
   
-                SELECT NEWID()
+                SELECT TOP(2) NEWID()
 	                , 'Name' + CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX))
 	                , T.Id AS TradeID
 	                , TV.id AS TradeLevelID
 	                , 'EN'
+                    , NULL
 	                , 'SampleSyllabusUrl'+ CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) +'.pdf' 
+                    , NULL
 	                , 'SampleTestPlanUrl'+ CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) +'.docx'
 	                , 'Development Officer Name' + CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) 
 	                , 'Manager name' + CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX))
