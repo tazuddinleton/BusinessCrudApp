@@ -67,10 +67,10 @@ namespace WebUI
 	                , T.Id AS TradeID
 	                , TV.id AS TradeLevelID
 	                , 'EN'
-                    , NULL
-	                , 'SampleSyllabusUrl'+ CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) +'.pdf' 
-                    , NULL
-	                , 'SampleTestPlanUrl'+ CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) +'.docx'
+                     , 'SampleSyllabusUrl'+ CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) +'.pdf'                    
+                    , 'https://localhost:44333/files/'
+	               , 'SampleTestPlanUrl'+ CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) +'.docx'
+                    , 'https://localhost:44333/files/'	                
 	                , 'Development Officer Name' + CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX)) 
 	                , 'Manager name' + CAST(ROW_NUMBER() OVER(ORDER BY T.ID) AS VARCHAR(MAX))
 	                , GETDATE()	

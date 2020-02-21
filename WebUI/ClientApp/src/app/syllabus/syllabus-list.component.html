@@ -53,13 +53,12 @@
       <td>{{ s.name }}</td>
       <td>{{ s.tradeName }}</td>
       <td>{{ s.tradeLevelName }}</td>
-      <td>
-        {{baseUrl}}
-        <a href="">{{ s.syllabusUrl }}</a>
+      <td>        
+        <a href="{{s.syllabusUrl+s.syllabusFilename}}" download >{{ s.syllabusFilename }}</a>
       </td>
       <td>
-        <a href="{{s.testPlanUrl}}">
-          {{ s.testPlanUrl }}
+        <a href="{{s.testPlanUrl+s.testPlanFilename}}" download>
+          {{ s.testPlanFilename }}          
         </a>
       </td>
       <td>{{ s.languages }}</td>
