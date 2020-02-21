@@ -37,10 +37,12 @@
     <None Remove="ClientApp\src\app\models\syllabus.model.ts" />
     <None Remove="ClientApp\src\app\models\trade.model.ts" />
     <None Remove="ClientApp\src\app\models\tradelevel.model.ts" />
+    <None Remove="ClientApp\src\app\services\fileUploadService.ts" />
     <None Remove="ClientApp\src\app\services\language.service.ts" />
     <None Remove="ClientApp\src\app\services\syllabus.service.ts" />
     <None Remove="ClientApp\src\app\services\trade.services.ts" />
     <None Remove="ClientApp\src\app\services\tradelevel.service.ts" />
+    <None Remove="ClientApp\src\app\services\utilityService.ts" />
     <None Remove="ClientApp\src\app\syllabus\syllabus-list.component.ts" />
     <None Remove="ClientApp\src\app\syllabus\syllabus.component.ts" />
   </ItemGroup>
@@ -55,10 +57,12 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\syllabus.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\trade.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\tradelevel.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\fileUploadService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\language.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\syllabus.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\trade.services.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\tradelevel.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\utilityService.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\syllabus\syllabus-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\syllabus\syllabus.component.ts" />
   </ItemGroup>

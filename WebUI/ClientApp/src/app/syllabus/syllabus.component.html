@@ -66,16 +66,27 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
               <button class="btn btn-primary" (click)="browseForFile('syllabusFile')">Upload Syllabus</button>
+              <br />
+              <small class="text-danger" *ngIf="currentFiletype == 'syllabus' && fileTypeError">
+                Only .pdf, .doc or .docx is allowed
+              </small>
+
               <input type="file" name="syllabusFile"
                      class="form-control" id="syllabusFile"
-                     accept=".doc,.docx,.pdf" (change)="onFileChange($event, 1)"
+                     accept=".doc,.docx,.pdf" (change)="onFileChange($event, 'syllabus')"
                      hidden />
+
             </div>
             <div class="col-md-4">
-              <small class="badge">
-                No file chosen
+              <small class="badge" style="padding: 5px">
+                <span *ngIf="!syllabusFile && !syllabus?.syllabusFilename">No file chosen</span>
+                
+                <span *ngIf="syllabusFile || syllabus?.syllabusFilename ">
+                  {{syllabusFile?.name || syllabus?.syllabusFilename}}
+                  <i style="cursor: pointer;" (click)="syllabusFile=null" class="fa fa-remove"></i>
+                </span>
               </small>
             </div>
           </div>
@@ -83,16 +94,25 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
               <button class="btn btn-primary" (click)="browseForFile('testPlanFile')">Upload Test Plan</button>
+              <br />
+              <small class="text-danger" *ngIf="currentFiletype == 'testplan' && fileTypeError">
+                Only .pdf, .doc or .docx is allowed
+              </small>
               <input type="file" name="testPlanFile"
                      class="form-control" id="testPlanFile"
-                     accept=".doc,.docx,.pdf" (change)="onFileChange($event, 1)"
+                     accept=".doc,.docx,.pdf" (change)="onFileChange($event, 'testplan')"
                      hidden />
             </div>
             <div class="col-md-4">
-              <small class="badge">
-                No file chosen
+              <small class="badge" style="padding: 5px">
+                <span *ngIf="!testPlanFile && !syllabus?.testPlanFilename">No file chosen</span>
+                
+                <span *ngIf="testPlanFile || syllabus?.testPlanFilename ">
+                  {{testPlanFile?.name ||  syllabus?.testPlanFilename}}
+                  <i style="cursor: pointer;" (click)="testPlanFile=null;" class="fa fa-remove"></i>
+                </span>
               </small>
             </div>
           </div>

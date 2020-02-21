@@ -15,36 +15,41 @@ import { TradeService } from './services/trade.services';
 import { TradeLevelService } from './services/tradelevel.service';
 import { SyllabusService } from './services/syllabus.service';
 import { LanguageService } from './services/language.service';
+import { FileUploadService } from './services/fileUploadService';
+import { UtilityService } from './services/utilityService';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,    
+    declarations: [
+        AppComponent,
+        NavMenuComponent,
+        HomeComponent,
+        CounterComponent,
         SyllabusListComponent,
         SyllabusComponent
-  ],
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
-      FormsModule,
-      ReactiveFormsModule,
-      RouterModule.forRoot([
-          { path: '', component: SyllabusListComponent },      
-          { path: 'counter', component: CounterComponent },
-          { path: 'syllabus', component: SyllabusComponent },
-          { path: 'syllabus/:id', component: SyllabusComponent }
-      
-    ])
-  ],
+    ],
+    imports: [
+        BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot([
+            { path: '', component: SyllabusListComponent },
+            { path: 'counter', component: CounterComponent },
+            { path: 'syllabus', component: SyllabusComponent },
+            { path: 'syllabus/:id', component: SyllabusComponent }
+
+        ])
+    ],
     providers: [
         TradeService,
         TradeLevelService,
         SyllabusService,
-        LanguageService
+        LanguageService,
+        FileUploadService,
+        UtilityService
+
     ],
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
