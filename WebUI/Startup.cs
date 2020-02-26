@@ -1,6 +1,6 @@
 using Autofac;
 using BCrud.Core;
-using BCrud.Domain.Dtos;
+
 using BCrud.Persistence;
 
 using Microsoft.AspNetCore.Builder;
@@ -53,8 +53,8 @@ namespace WebUI
         {
             builder.RegisterAssemblyTypes(typeof(Startup).Assembly)
                 .AsImplementedInterfaces();
-            builder.RegisterDbContext();
-            builder.RegisterRepositories();            
+            //builder.AddPersistence();
+            builder.AddApplicationCore();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

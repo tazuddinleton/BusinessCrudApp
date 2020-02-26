@@ -23,7 +23,7 @@ namespace WebUI.Controllers
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<DropdownListDto>> Get()
+        public ActionResult<IEnumerable<object>> Get()
         {
             return Ok(_tradeRepository.GetTrades());
         }

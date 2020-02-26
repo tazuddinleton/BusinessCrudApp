@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -33,6 +38,25 @@ namespace BCrud.Api.Common
                 return model;
             field.SetValue(model, value);
             return model;
+        }
+
+        public static IMvcBuilder AddCustomNewtonSoftJson(this IMvcBuilder builder)
+        {
+            builder.AddNewtonsoftJson(configure => {
+                 configure.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                 configure.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+                 configure.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
+                 configure.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
+                 configure.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                 configure.SerializerSettings.Formatting = Formatting.Indented;
+                 configure.SerializerSettings.Converters.Add(new StringEnumConverter());
+             });
+            return builder;
+        }
+
+        public static IServiceCollection AddCustomCors(this IServiceCollection services)
+        {
+            return services.AddCors(opt => opt.AddPolicy("allowallorigin", builder => builder.AllowAnyOrigin()));
         }
     }
 }

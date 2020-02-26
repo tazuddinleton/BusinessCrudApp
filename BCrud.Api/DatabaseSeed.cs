@@ -1,5 +1,6 @@
 ﻿using BCrud.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,25 +10,25 @@ namespace BCrud.Api
 {
     public static class DatabaseSeeding
     {
-        public static void Seed()
+        public static void Seed(DatabaseContext context)
         {
-            using (var context = new DatabaseContext())
+            
+
+            if (context.Trades.Any())
             {
-                if (context.Trades.Any())
-                {
-                    return;
-                }
+                return;
+            }
 
 
-                for (int i = 100; i <= 120; i++)
-                {
-                    context.Trades.Add(new BCrud.Domain.Entities.Trade(Guid.NewGuid(), $"Trade {i.ToString()}"));
-                }
-                context.SaveChanges();
+            for (int i = 100; i <= 120; i++)
+            {
+                context.Trades.Add(new BCrud.Domain.Entities.Trade(Guid.NewGuid(), $"Trade {i.ToString()}"));
+            }
+            context.SaveChanges();
 
-                // Seeding using raw sql because of the issue with foreign key exception
-                // this is temporary will fix later.
-                context.Database.ExecuteSqlCommand(@"
+            // Seeding using raw sql because of the issue with foreign key exception
+            // this is temporary will fix later.
+            context.Database.ExecuteSqlCommand(@"
                   SELECT *, ROW_NUMBER() OVER(ORDER BY Id) AS RN
                   INTO #Trades
                   FROM Trades
@@ -46,7 +47,7 @@ namespace BCrud.Api
 
 
 
-                context.Database.ExecuteSqlCommand(@"
+            context.Database.ExecuteSqlCommand(@"
     
                 INSERT INTO [dbo].[Syllabi]
                            ([Id]
@@ -79,7 +80,6 @@ namespace BCrud.Api
 
 
 ");
-            }
         }
     }
 }

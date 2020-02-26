@@ -9,7 +9,7 @@ namespace BCrud.Core
 {
     public static class Extensions
     {
-        public static void RegisterRepositories(this ContainerBuilder builder)
+        public static void AddApplicationCore(this ContainerBuilder builder)
         {
             builder.RegisterType<TradeRepository>().As<ITradeRepository>();
             builder.RegisterType<TradeLevelRepository>().As<ITradeLevelRepository>();

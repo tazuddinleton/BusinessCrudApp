@@ -1,5 +1,6 @@
 ﻿using BCrud.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,11 @@ namespace BCrud.Persistence
 {
     public class DatabaseContext : DbContext, IDatabaseContext
     {
-        public DatabaseContext()
-        {
 
+        private string connectionString;
+        public DatabaseContext(string connectionString)
+        {
+            this.connectionString = connectionString;
         }
 
         public DbSet<Trade> Trades { get; set; }
@@ -27,9 +30,9 @@ namespace BCrud.Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-O2E45CT;Database=BCrudDb;Trusted_Connection=True;user id=sa;password=1234;");
-            base.OnConfiguring(optionsBuilder);
+            if (string.IsNullOrEmpty(this.connectionString))
+                throw new Exception("Connection string cannot be null.");
+            base.OnConfiguring(optionsBuilder.UseSqlServer(connectionString));
         }
     }
 }

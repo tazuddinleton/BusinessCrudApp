@@ -16,7 +16,7 @@ namespace WebUI
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
-            DatabaseSeeding.Seed();
+            //DatabaseSeeding.Seed();
             host.Run();
         }
 

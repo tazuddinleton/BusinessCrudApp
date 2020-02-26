@@ -1,4 +1,4 @@
-﻿using BCrud.Domain.Dtos;
+﻿
 using BCrud.Domain.Entities;
 using BCrud.Domain.Repositories;
 using BCrud.Persistence;
@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using BCrud.Domain.Dtos;
 
 namespace BCrud.Core.Repositories
 {

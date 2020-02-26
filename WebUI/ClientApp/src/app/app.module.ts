@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SyllabusListComponent } from './syllabus/syllabus-list.component';
 import { SyllabusComponent } from './syllabus/syllabus.component';
@@ -23,8 +21,6 @@ import { UtilityService } from './services/utilityService';
     declarations: [
         AppComponent,
         NavMenuComponent,
-        HomeComponent,
-        CounterComponent,
         SyllabusListComponent,
         SyllabusComponent
     ],
@@ -34,8 +30,7 @@ import { UtilityService } from './services/utilityService';
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot([
-            { path: '', component: SyllabusListComponent },
-            { path: 'counter', component: CounterComponent },
+            { path: '', component: SyllabusListComponent },            
             { path: 'syllabus', component: SyllabusComponent },
             { path: 'syllabus/:id', component: SyllabusComponent }
 

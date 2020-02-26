@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
+using BCrud.Api.Common;
 using BCrud.Core;
 using BCrud.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -31,24 +32,18 @@ namespace BCrud.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers()
-                .AddNewtonsoftJson(configure => {
-                    configure.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                    configure.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                    configure.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
-                    configure.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
-                    configure.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                    configure.SerializerSettings.Formatting = Formatting.Indented;
-                    configure.SerializerSettings.Converters.Add(new StringEnumConverter());
-                });
+            services
+                .AddCustomCors()
+                .AddControllers()                
+                .AddCustomNewtonSoftJson();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(typeof(Startup).Assembly)
                 .AsImplementedInterfaces();
-            builder.RegisterDbContext();
-            builder.RegisterRepositories();
+            builder.AddPersistence(Configuration);
+            builder.AddApplicationCore();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +54,7 @@ namespace BCrud.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors();
             app.UseHttpsRedirection();
 
             app.UseRouting();
