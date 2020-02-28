@@ -13,21 +13,14 @@ namespace WebUI
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            var host = CreateWebHostBuilder(args).Build();
-            //DatabaseSeeding.Seed();
-            host.Run();
-        }
-
+        public static void Main(string[] args) =>
+            CreateWebHostBuilder(args).Build().Run();
 
         public static IHostBuilder CreateWebHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder()
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-            .ConfigureWebHostDefaults(x => x.UseStartup<Startup>());
-
-        //public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-        //    WebHost.CreateDefaultBuilder(args)
-        //        .UseStartup<Startup>();
+            .ConfigureWebHostDefaults(
+                x => x.UseStartup<Startup>()                
+            );
     }
 }

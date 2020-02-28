@@ -56,7 +56,7 @@ namespace BCrud.Api.Common
 
         public static IServiceCollection AddCustomCors(this IServiceCollection services)
         {
-            return services.AddCors(opt => opt.AddPolicy("allowallorigin", builder => builder.AllowAnyOrigin()));
+            return services.AddCors(opt => opt.AddPolicy("allowallorigin", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
         }
     }
 }

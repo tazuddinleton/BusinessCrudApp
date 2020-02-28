@@ -54,7 +54,7 @@ namespace BCrud.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors();
+            app.UseCors("allowallorigin");
             app.UseHttpsRedirection();
 
             app.UseRouting();

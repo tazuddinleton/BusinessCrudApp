@@ -31,17 +31,8 @@ namespace WebUI
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {   
-            services.AddControllersWithViews()
-                .AddNewtonsoftJson(configure => {                
-                configure.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                configure.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                configure.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
-                configure.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
-                configure.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                configure.SerializerSettings.Formatting = Formatting.Indented;
-                configure.SerializerSettings.Converters.Add(new StringEnumConverter());                  
-            });
+        {
+            services.AddControllersWithViews();                
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -80,13 +71,6 @@ namespace WebUI
 
             app.UseRouting();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller}/{action=Index}/{id?}");
-            //});
-            
             app.UseEndpoints(x => x.MapControllers());
 
             app.UseSpa(spa =>

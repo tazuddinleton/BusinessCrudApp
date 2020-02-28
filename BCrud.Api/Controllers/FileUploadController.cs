@@ -24,33 +24,44 @@ namespace BCrud.Api.Controllers
         [HttpPost]
         public ActionResult<Dictionary<string, string>> Post()
         {
-
-            var url = Request.Host.ToUriComponent() + fileLocation;
-
-            var files = Request.Form.Files.Count > 0 ? Request.Form.Files : null;
-
-            
-
-            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
-            
-            if (files != null)
+            try
             {
-                foreach (var file in files)
+                var form = Request.Form;
+                var f = form.Files;
+
+
+                var url = Request.Host.ToUriComponent() + fileLocation;
+
+                var files = Request.Form.Files.Count > 0 ? Request.Form.Files : null;
+
+
+
+                Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+
+                if (files != null)
                 {
-                    string path = Path.Combine(_hostingEnvironment.WebRootPath, "files");
-
-                    string ext = Path.GetExtension(file.FileName);
-                    var newFilename = Guid.NewGuid() + ext;
-
-                    keyValuePairs.Add(file.FileName, url + newFilename);
-
-                    using (var fileStream = new FileStream(Path.Combine(path, newFilename), FileMode.Create))
+                    foreach (var file in files)
                     {
-                        file.CopyToAsync(fileStream);
-                    }                                                            
+                        string path = Path.Combine(_hostingEnvironment.WebRootPath, "files");
+
+                        string ext = Path.GetExtension(file.FileName);
+                        var newFilename = Guid.NewGuid() + ext;
+
+                        keyValuePairs.Add(file.FileName, url + newFilename);
+
+                        using (var fileStream = new FileStream(Path.Combine(path, newFilename), FileMode.Create))
+                        {
+                            file.CopyToAsync(fileStream);
+                        }
+                    }
                 }
+                return Ok(keyValuePairs);
             }
-            return Ok(keyValuePairs);
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
